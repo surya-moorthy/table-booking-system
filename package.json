@@ -1,0 +1,11 @@
+{
+  "name": "table-booking-system",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "dev": "pnpm --filter backend run dev",
+    "db:generate": "pnpm --filter db run generate",
+    "db:migrate": "pnpm --filter db run migrate"
+  }
+}

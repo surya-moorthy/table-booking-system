@@ -1,0 +1,42 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Logs
+*.log
+logs
+*.pid
+*.seed
+*.pid.lock
+
+# Environment
+.env
+.env.*.local
+
+# TypeScript
+dist/
+*.tsbuildinfo
+
+# Prisma
+prisma/.env
+prisma/migrations/*-tmp/
+*.db
+*.sqlite
+*.sqlite-journal
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Test coverage
+coverage/
+
+# Build outputs
+out/
+build/
