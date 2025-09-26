@@ -8,54 +8,69 @@ datasource db {
 }
 
 model User {
-  id           String    @id @default(uuid())
-  name         String
-  email        String    @unique
-  passwordHash String
-  role         String    @default("customer") // "customer" | "admin"
-  bookings     Booking[] 
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-}
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-model Venue {
-  id           String    @id @default(uuid())
-  name         String
-  description  String?
-  type         String    // "hotel" | "restaurant" | "hall"
-  location     String
-  capacity     Int
-  amenities    String[]  // Postgres array
-  openingHours String?
-  tables       Table[]
-  bookings     Booking[]
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  bookings  Booking[]
 }
 
 model Table {
-  id          String   @id @default(uuid())
-  venueId     String
-  venue       Venue    @relation(fields: [venueId], references: [id])
-  number      String
-  capacity    Int
-  isAvailable Boolean  @default(true)
-  bookings    Booking[]
+  id        String   @id @default(cuid())
+  tableNo   String   @unique
+  capacity  Int
+  status    TableStatus @default(FREE)
+
+  bookings  Booking[]
 }
 
 model Booking {
-  id             String   @id @default(uuid())
-  userId         String
-  user           User     @relation(fields: [userId], references: [id])
-  venueId        String
-  venue          Venue    @relation(fields: [venueId], references: [id])
-  tableId        String?  // optional for halls/rooms
-  table          Table?   @relation(fields: [tableId], references: [id])
-  startTime      DateTime
-  endTime        DateTime
-  guests         Int?
-  specialRequest String?
-  status         String   @default("pending") // pending | confirmed | canceled
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  id        String   @id @default(cuid())
+  bookedAt  DateTime @default(now())
+  status    BookingStatus @default(PROGRESS)
+
+  tableId   String
+  userId    String
+
+  table     Table @relation(fields: [tableId], references: [id])
+  user      User  @relation(fields: [userId], references: [id])
+}
+
+/* model Payment {
+  id          String   @id @default(cuid())
+  amount      Float
+  status      PaymentStatus @default(PENDING)
+  method      PaymentMethod
+  createdAt   DateTime @default(now())
+
+  bookingId   String   @unique
+  booking     Booking  @relation(fields: [bookingId], references: [id])
+} */ 
+
+
+enum TableStatus {
+  PROGRESS
+  RESERVED
+  FREE
+}
+
+enum BookingStatus {
+  SUCCESS
+  FAILED
+  PROGRESS
+}
+
+/* enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+} */
+
+enum PaymentMethod {
+  CASH
+  CARD
+  UPI
 }

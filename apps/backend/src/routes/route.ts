@@ -5,6 +5,6 @@ import { tableRouter } from "./tableRouter.js";
 
 export const rootRouter : Router = Router();
 
-rootRouter.use("/user",userRouter);
+rootRouter.use("/users",userRouter);
 rootRouter.use("/booking",bookRouter);
 rootRouter.use("/tableRouter",tableRouter);
