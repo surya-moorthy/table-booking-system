@@ -34,7 +34,7 @@ model Booking {
   status    BookingStatus @default(PROGRESS)
 
   tableId   String
-  userId    String
+  userId    String  
 
   table     Table @relation(fields: [tableId], references: [id])
   user      User  @relation(fields: [userId], references: [id])

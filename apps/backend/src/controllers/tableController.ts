@@ -7,7 +7,7 @@ export const getTables = async (req : Request, res : Response)=> {
         const tables = await client.table.findMany();
         res.json({
             msg : "table gotten successful",
-            email : req.user.email,
+            userId : req.user.userId,
             tables : tables
         })
 

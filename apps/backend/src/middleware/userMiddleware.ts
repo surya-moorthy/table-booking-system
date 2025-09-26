@@ -17,7 +17,7 @@ export const userMiddleware = (req: Request,res: Response,next: NextFunction)=>{
         })
     }
     try {
-        const decoded = jwt.verify(token , jwt_password) as {name : string , email : string,role : ROLE};
+        const decoded = jwt.verify(token , jwt_password) as {userId : string,role : ROLE};
         req.user = decoded;
         next();
     }catch(e){
