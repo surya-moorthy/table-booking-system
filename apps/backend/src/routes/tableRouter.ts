@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { userMiddleware } from "../middleware/userMiddleware.js";
-import { getTables } from "../controllers/tableController.js";
+import { userMiddleware } from "../middleware/userMiddleware";
+import { getTables } from "../controllers/tableController";
 
 export const tableRouter : Router = Router();
 
 tableRouter.use(userMiddleware);
-tableRouter.use("/",getTables);
+tableRouter.get("/",getTables);
 // tableRouter.use("/",getTableByID);
 // tableRouter.use("/",createTable);
 // tableRouter.use("/",deleteTable);

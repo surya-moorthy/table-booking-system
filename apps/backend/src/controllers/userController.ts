@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
-import { LoginSchema, RegisterSchema } from "../types/user/user.js";
-import { client } from "@repo/db";
-import jwt from "jsonwebtoken";
+import { LoginSchema, RegisterSchema } from "../types/user/user";
+import * as jwt from "jsonwebtoken";
+import { client } from "@repo/db/src";
 
 const jwt_password = process.env.JWT_SECRET || "tablejwtpassword";
 

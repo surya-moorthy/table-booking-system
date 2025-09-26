@@ -1,4 +1,4 @@
-import express from "express";
+import * as express from "express";
 import { rootRouter } from "./routes/route.js";
 
 const app = express();

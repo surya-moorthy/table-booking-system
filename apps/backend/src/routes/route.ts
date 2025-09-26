@@ -7,4 +7,4 @@ export const rootRouter : Router = Router();
 
 rootRouter.use("/users",userRouter);
 rootRouter.use("/booking",bookRouter);
-rootRouter.use("/tableRouter",tableRouter);
+rootRouter.use("/table",tableRouter);
