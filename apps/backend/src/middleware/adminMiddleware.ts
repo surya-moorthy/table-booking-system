@@ -7,7 +7,7 @@ import { ROLE } from "../types/express";
 
 const jwt_password = process.env.JWT_SECRET || "tablejwtpassword";
 
-export const userMiddleware = (req: Request,res: Response,next: NextFunction)=>{
+export const adminMiddleware = (req: Request,res: Response,next: NextFunction)=>{
     const header = req.headers['authorization'];
     const token = header?.split(' ')[1] as string ;
     console.log(token)
@@ -18,6 +18,12 @@ export const userMiddleware = (req: Request,res: Response,next: NextFunction)=>{
     }
     try {
         const decoded = jwt.verify(token , jwt_password) as {name : string , email : string,role : ROLE};
+        if(decoded.role !== ROLE.ADMIN) {
+            res.status(403).json({
+                msg : "Unauthorized."
+            })
+            return
+        }
         req.user = decoded;
         next();
     }catch(e){

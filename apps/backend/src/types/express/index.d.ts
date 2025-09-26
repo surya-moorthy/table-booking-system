@@ -7,7 +7,13 @@ declare global {
       user: {
         name: string;
         email: string;
+        role : ROLE
       };
     }
   }
 }
+
+export enum ROLE {
+  USER,
+  ADMIN
+} 
