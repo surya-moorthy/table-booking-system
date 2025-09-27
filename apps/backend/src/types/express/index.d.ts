@@ -12,7 +12,7 @@ declare global {
   }
 }
 
-export enum ROLE {
+enum ROLE {
   USER,
   ADMIN
 } 

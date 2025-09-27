@@ -3,7 +3,7 @@
 
 import type { NextFunction, Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
-import { ROLE } from "../types/express";
+import { ROLE } from "../types/types";
 
 const jwt_password = process.env.JWT_SECRET || "tablejwtpassword";
 
