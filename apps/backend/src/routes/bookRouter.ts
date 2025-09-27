@@ -1,4 +1,3 @@
-import { client } from "@repo/db/src";
 import { Request, Response, Router } from "express";
 import { userMiddleware } from "../middleware/userMiddleware";
 import { cancelBooking, createBooking, SuccessBooking } from "../controllers/bookingController";
